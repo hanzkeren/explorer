@@ -10,45 +10,199 @@ body {
 }
 
 body {
-  transition: color 0.5s, background-color 0.5s;
+  transition: color 0.3s ease, background-color 0.3s ease;
   line-height: 1.6;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-heading), var(--font-body), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* CSS Variables - Clean & Modern */
 :root {
-  --text-main: #333;
-  --text-secondary: #4b525d;
-  --bg-active: #fbfbfc;
+  --text-main: #1a1a1a;
+  --text-secondary: #6b7280;
+  --bg-active: #f3f4f6;
+  --bg-hover: #f9fafb;
+  --border-color: #e5e7eb;
+  --accent-primary: #3b82f6;
+  --radius: 8px;
+  --spacing: 1.5rem;
+  --font-heading: 'Inter', system-ui;
+  --font-body: 'Inter', system-ui;
 }
 
 html.dark,
 html[data-theme='dark'] {
-  --text-main: #f7f7f7;
-  --text-secondary: #6f6e84;
-  --bg-active: #242b40;
+  --text-main: #f9fafb;
+  --text-secondary: #9ca3af;
+  --bg-active: #242831;
+  --bg-hover: #1f2329;
+  --border-color: #374151;
+  --accent-primary: #60a5fa;
 }
 
+/* Typography - Clean & Modern */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold text-main;
+}
+
+h1 { @apply text-3xl; }
+h2 { @apply text-2xl; }
+h3 { @apply text-xl; }
+h4 { @apply text-lg; }
+
+p {
+  @apply text-base text-secondary leading-relaxed;
+}
+
+/* Buttons - Clean & Modern */
+.btn {
+  @apply normal-case font-medium text-sm;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  @apply bg-primary hover:bg-opacity-90 text-white border-0;
+}
+
+.btn-sm {
+  @apply text-sm px-4 py-2;
+}
+
+.btn-xs {
+  @apply text-xs px-3 py-1.5;
+}
+
+/* Cards - Clean & Modern */
+.card {
+  @apply border border-[var(--border-color)] bg-base-100;
+  border-radius: var(--radius);
+}
+
+/* Badges - Clean */
+.badge {
+  @apply font-medium text-xs px-3 py-1;
+  border-radius: calc(var(--radius) / 2);
+}
+
+/* Alerts - Clean */
+.alert {
+  @apply border border-[var(--border-color)] bg-base-100;
+  border-radius: var(--radius);
+}
+
+/* Inputs - Clean & Modern */
+.input, .select, .textarea {
+  @apply border border-[var(--border-color)];
+  @apply focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+/* Menus - Minimal */
+.menu {
+  @apply bg-transparent text-sm;
+}
+.menu :where(li) > :where(*:not(ul,.menu-title,details,.btn)):not(.active):hover {
+  @apply bg-[var(--bg-hover)];
+}
+.menu .active {
+  @apply bg-[var(--bg-active)] text-main;
+}
+
+/* Tabs - Minimal */
+.tabs {
+  @apply text-sm;
+}
+.tab {
+  @apply px-4 py-2;
+}
+.tab-active {
+  @apply font-medium;
+}
+
+/* Tables - Minimal */
+.table {
+  @apply text-sm;
+}
+.table :where(th, td) {
+  @apply border-0 py-2;
+}
+.table :where(th) {
+  @apply text-xs uppercase font-medium text-secondary;
+}
+.table-zebra tbody tr:nth-child(even) {
+  @apply bg-transparent;
+}
+.table tr {
+  @apply hover:bg-[var(--bg-hover)] border-b border-[var(--border-color)];
+}
 .table th:first-child {
   position: relative;
   z-index: 2;
 }
 
+/* Vue Transitions - Minimal */
 .slide-up-enter-active,
 .slide-up-leave-active {
-  transition: all 0.25s ease-out;
+  transition: opacity 0.2s ease;
 }
 
 .slide-up-enter-from {
   opacity: 0;
-  transform: translateY(calc(80%));
 }
 
 .slide-up-leave-to {
   opacity: 0;
-  transform: translateY(-calc(15%));
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[var(--border-color)];
+}
+
+/* Link Styles - Minimal */
+.link {
+  @apply text-primary no-underline hover:underline;
+}
+
+/* Progress Bar - Minimal */
+.progress {
+  @apply h-1;
+}
+
+/* Dropdown - Minimal */
+.dropdown-content {
+  @apply border border-[var(--border-color)];
+  box-shadow: none !important;
+}
+
+/* Modal - Minimal */
+.modal-box {
+  @apply border border-[var(--border-color)];
+  box-shadow: none !important;
+}
+
+/* Divider - Minimal */
+.divider {
+  @apply my-4;
+}
+
+/* Responsive Design Utilities */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
 }

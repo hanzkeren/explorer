@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import type { ChainConfig, Endpoint } from '@/types/chaindata';
 import { useDashboard} from './useDashboard';
-import type { NavGroup, NavLink, NavSectionTitle, VerticalNavItems } from '@/layouts/types';
+import type { NavLink, NavSectionTitle, VerticalNavItems } from '@/layouts/types';
 import { useRouter } from 'vue-router';
 import { CosmosRestClient } from '@/libs/client';
 import {
@@ -14,8 +14,6 @@ import {
   useWalletStore,
 } from '.';
 import { useBlockModule } from '@/modules/[chain]/block/block';
-import { DEFAULT } from '@/libs';
-import { hexToRgb, rgbToHsl } from '@/libs/utils';
 
 export const useBlockchain = defineStore('blockchain', {
   state: () => {
@@ -57,13 +55,9 @@ export const useBlockchain = defineStore('blockchain', {
       const routes = router?.getRoutes() || [];
       if (this.current && routes) {
         if (this.current?.themeColor) {
-          const { color } = hexToRgb(this.current?.themeColor);
-          const { h, s, l } = rgbToHsl(color);
-          const themeColor = h + ' ' + s + '% ' + l + '%';
-          document.body.style.setProperty('--p', `${themeColor}`);
-          // document.body.style.setProperty('--p', `${this.current?.themeColor}`);
+          document.body.style.setProperty('--p', this.current?.themeColor);
         } else {
-          document.body.style.setProperty('--p', '237.65 100% 70%');
+          document.body.style.setProperty('--p', '#3b82f6');
         }
         currNavItem = [
           {
@@ -73,44 +67,23 @@ export const useBlockchain = defineStore('blockchain', {
             badgeContent: this.isConsumerChain ? 'Consumer' : undefined,
             badgeClass: 'bg-error',
             children: routes
-              .filter((x) => x.meta.i18n) // defined menu name
-              .filter((x) => !this.current?.features || this.current.features.includes(String(x.meta.i18n))) // filter none-custom module
-              .map((x) => ({
+              .filter((x: any) => x.meta.i18n) // defined menu name
+              .filter((x: any) => !this.current?.features || this.current.features.includes(String(x.meta.i18n))) // filter none-custom module
+              .map((x: any) => ({
                 title: `module.${x.meta.i18n}`,
                 to: { path: x.path.replace(':chain', this.chainName) },
                 icon: { icon: 'mdi-chevron-right', size: '22' },
                 i18n: true,
                 order: Number(x.meta.order || 100),
               }))
-              .sort((a, b) => a.order - b.order),
+              .sort((a: any, b: any) => a.order - b.order),
           },
         ];
       }
-      // compute favorite menu
-      const favNavItems: VerticalNavItems = [];
-      Object.keys(this.dashboard.favoriteMap).forEach((name) => {
-        const ch = this.dashboard.chains[name];
-        if (ch && this.dashboard.favoriteMap?.[name]) {
-          favNavItems.push({
-            title: ch.prettyName || ch.chainName || name,
-            to: { path: `/${ch.chainName || name}` },
-            icon: { image: ch.logo, size: '22' },
-          });
-        }
-      });
-
       // combine all together
       return [
         ...currNavItem,
         { heading: 'Ecosystem' } as NavSectionTitle,
-        {
-          title: 'Favorite',
-          children: favNavItems,
-          badgeContent: favNavItems.length,
-          badgeClass: 'bg-primary',
-          i18n: true,
-          icon: { icon: 'mdi-star', size: '22' },
-        } as NavGroup,
         {
           title: 'All Blockchains',
           to: { path: '/' },
@@ -162,7 +135,7 @@ export const useBlockchain = defineStore('blockchain', {
     async setRestEndpoint(endpoint: Endpoint) {
       this.connErr = '';
       this.endpoint = endpoint;
-      this.rpc = CosmosRestClient.newStrategy(endpoint.address, this.current);
+      this.rpc = CosmosRestClient.newStrategy(endpoint.address || '', this.current);
       localStorage.setItem(`endpoint-${this.chainName}`, JSON.stringify(endpoint));
     },
     async setCurrent(name: string) {

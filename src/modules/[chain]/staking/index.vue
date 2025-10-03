@@ -219,52 +219,48 @@ loadAvatars();
 </script>
 <template>
   <div>
-    <div class="bg-base-100 rounded-lg grid sm:grid-cols-1 md:grid-cols-4 p-4">
+    <div class="bg-base-100 border border-[var(--border-color)] grid sm:grid-cols-1 md:grid-cols-4 p-4">
       <div class="flex">
         <span>
-          <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
+          <div class="w-9 h-9 flex items-center justify-center mr-2">
             <Icon class="text-success" icon="mdi:trending-up" size="32" />
-            <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-success"></div>
           </div>
         </span>
         <span>
-          <div class="font-bold">{{ format.percent(mintStore.inflation) }}</div>
+          <div class="font-semibold">{{ format.percent(mintStore.inflation) }}</div>
           <div class="text-xs">{{ $t('staking.inflation') }}</div>
         </span>
       </div>
       <div class="flex">
         <span>
-          <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
+          <div class="w-9 h-9 flex items-center justify-center mr-2">
             <Icon class="text-primary" icon="mdi:lock-open-outline" size="32" />
-            <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-primary"></div>
           </div>
         </span>
         <span>
-          <div class="font-bold">{{ formatSeconds(staking.params?.unbonding_time) }}</div>
+          <div class="font-semibold">{{ formatSeconds(staking.params?.unbonding_time) }}</div>
           <div class="text-xs">{{ $t('staking.unbonding_time') }}</div>
         </span>
       </div>
       <div class="flex">
         <span>
-          <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
+          <div class="w-9 h-9 flex items-center justify-center mr-2">
             <Icon class="text-error" icon="mdi:alert-octagon-outline" size="32" />
-            <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error"></div>
           </div>
         </span>
         <span>
-          <div class="font-bold">{{ format.percent(slashing.slash_fraction_double_sign) }}</div>
+          <div class="font-semibold">{{ format.percent(slashing.slash_fraction_double_sign) }}</div>
           <div class="text-xs">{{ $t('staking.double_sign_slashing') }}</div>
         </span>
       </div>
       <div class="flex">
         <span>
-          <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
+          <div class="w-9 h-9 flex items-center justify-center mr-2">
             <Icon class="text-error" icon="mdi:pause" size="32" />
-            <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error"></div>
           </div>
         </span>
         <span>
-          <div class="font-bold">{{ format.percent(slashing.slash_fraction_downtime) }}</div>
+          <div class="font-semibold">{{ format.percent(slashing.slash_fraction_downtime) }}</div>
           <div class="text-xs">{{ $t('staking.downtime_slashing') }}</div>
         </span>
       </div>
@@ -273,21 +269,21 @@ loadAvatars();
     <div>
       <div class="flex items-center justify-between py-1">
         <div class="tabs tabs-boxed bg-transparent">
-          <a class="tab text-gray-400" :class="{ 'tab-active': tab === 'featured' }" @click="tab = 'featured'">{{
+          <a class="tab" :class="{ 'tab-active': tab === 'featured' }" @click="tab = 'featured'">{{
             $t('staking.popular')
           }}</a>
-          <a class="tab text-gray-400" :class="{ 'tab-active': tab === 'active' }" @click="tab = 'active'">{{
+          <a class="tab" :class="{ 'tab-active': tab === 'active' }" @click="tab = 'active'">{{
             $t('staking.active')
           }}</a>
-          <a class="tab text-gray-400" :class="{ 'tab-active': tab === 'inactive' }" @click="tab = 'inactive'">{{
+          <a class="tab" :class="{ 'tab-active': tab === 'inactive' }" @click="tab = 'inactive'">{{
             $t('staking.inactive')
           }}</a>
         </div>
 
-        <div class="text-lg font-semibold">{{ list.length }}/{{ staking.params.max_validators }}</div>
+        <div class="text-base font-semibold">{{ list.length }}/{{ staking.params.max_validators }}</div>
       </div>
 
-      <div class="bg-base-100 px-4 pt-3 pb-4 rounded shadow">
+      <div class="bg-base-100 border border-[var(--border-color)] px-4 pt-3 pb-4">
         <div class="overflow-x-auto">
           <table class="table staking-table w-full">
             <thead class="bg-base-200">
@@ -306,7 +302,7 @@ loadAvatars();
               <tr
                 v-for="({ v, rank, logo }, i) in list"
                 :key="v.operator_address"
-                class="hover:bg-gray-100 dark:hover:bg-[#384059]"
+                class="hover:bg-[var(--bg-hover)]"
               >
                 <!-- 👉 rank -->
                 <td>

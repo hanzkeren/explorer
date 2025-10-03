@@ -1,10 +1,11 @@
 <div align="center">
 
-![Ping Wallet](./public/logo.svg)
+![Kerenstake](https://cdn.kerenstake.com/logo-ks.png)
 
-<h1>Ping Dashboard</h1>
+<h1>KERENSTAKE<span style="color: #3b82f6;">.</span></h1>
+<h3>EXPLORER</h3>
 
-**Ping Dashboard is not only an explorer but also a wallet and more ... 🛠**
+**Kerenstake Explorer is a simple and elegant blockchain explorer 🛠**
 
 [![version](https://img.shields.io/github/tag/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/releases/latest)
 [![GitHub](https://img.shields.io/github/license/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/blob/master/LICENSE)
@@ -14,7 +15,7 @@
 
 </div>
 
-`Ping Dashboard` is a light explorer for Cosmos-based Blockchains.  https://ping.pub .
+`Kerenstake Explorer` is a simple and elegant explorer for Cosmos-based Blockchains.
 
 ## What sets Ping Dashboard apart from other explorers?
 **Ping Dashboard** stands out by providing a real-time exploration of blockchain data without relying on caching or pre-processing. It exclusively fetches data from the Cosmos full node via LCD/RPC endpoints, ensuring a truly authentic experience. This approach is referred to as the "Light Explorer."

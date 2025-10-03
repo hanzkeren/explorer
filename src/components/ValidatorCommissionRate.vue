@@ -26,8 +26,8 @@ const series = computed(() => [s1.value, s2.value, s3, s4.value, s5.value]);
 const format = useFormatter();
 
 const chartConfig = computed(() => {
-  const secondaryText = `hsl(var(--bc))`;
-  const primaryText = `hsl(var(--bc))`;
+  const secondaryText = `#9ca3af`;
+  const primaryText = `#f9fafb`;
 
   return {
     chart: {
@@ -47,7 +47,7 @@ const chartConfig = computed(() => {
     stroke: {
       width: 3,
       lineCap: 'round',
-      colors: ['hsl(var(--b1))'],
+      colors: ['#1a1d23'],
     },
     labels: ['Available', 'Daily Change', 'Commission Rate', 'Daily Change', 'Available'],
     states: {
@@ -103,28 +103,26 @@ const chartConfig = computed(() => {
 </script>
 
 <template>
-  <div class="bg-base-100 rounded shadow p-4">
-    <div class="text-lg text-main font-semibold mb-1">Commission Rate</div>
-    <div class="text-sm text-gray-500 dark:text-gray-400">
-      {{ `Updated at ${format.toDay(props.commission?.update_time, 'short')}` }}
+  <div class="bg-base-100 border border-[var(--border-color)] p-4">
+    <div class="text-sm text-main font-medium mb-1">Commission Rate</div>
+    <div class="text-xs text-secondary mb-3">
+      {{ `Updated ${format.toDay(props.commission?.update_time, 'short')}` }}
     </div>
-    <div class="w-80 m-auto">
+    <div class="w-64 m-auto">
       <ApexCharts type="donut" :options="chartConfig" :series="series" />
     </div>
-    <div>
-      <div class="flex items-center justify-center flex-wrap gap-x-3">
-        <div class="flex items-center gap-x-2">
-          <div class="bg-success w-[6px] h-[6px] rounded-full"></div>
-          <span class="text-caption">Rate:{{ rate.toFixed(0) }}%</span>
-        </div>
-        <div class="flex items-center gap-x-2">
-          <div class="bg-success w-[6px] h-[6px] rounded-full opacity-60"></div>
-          <span class="text-caption">24h: ±{{ change }}%</span>
-        </div>
-        <div class="flex items-center gap-x-2">
-          <div class="bg-secondary w-[6px] h-[6px] rounded-full"></div>
-          <span class="text-caption">Max:{{ max }}%</span>
-        </div>
+    <div class="flex items-center justify-center flex-wrap gap-x-4 mt-2">
+      <div class="flex items-center gap-x-1.5">
+        <div class="bg-yes w-1.5 h-1.5 rounded-full"></div>
+        <span class="text-xs text-secondary">Rate: {{ rate.toFixed(0) }}%</span>
+      </div>
+      <div class="flex items-center gap-x-1.5">
+        <div class="bg-yes w-1.5 h-1.5 rounded-full opacity-50"></div>
+        <span class="text-xs text-secondary">24h: ±{{ change }}%</span>
+      </div>
+      <div class="flex items-center gap-x-1.5">
+        <div class="bg-secondary w-1.5 h-1.5 rounded-full"></div>
+        <span class="text-xs text-secondary">Max: {{ max }}%</span>
       </div>
     </div>
   </div>

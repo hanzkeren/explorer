@@ -21,7 +21,9 @@ export enum EndpointType {
 
 export interface Chain extends RegistryChain {}
 export interface Asset extends RegistryAsset {}
-export interface Endpoint extends RegistryEndPoint {}
+export interface Endpoint extends RegistryEndPoint {
+  address: string;
+}
 export interface DenomUnit extends RegistryDenomUnit {}
 
 export interface LocalChainConfig {

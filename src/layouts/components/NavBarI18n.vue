@@ -60,7 +60,7 @@ const handleLangChange = (lang: string) => {
     <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40">
       <li v-for="lang in i18nLangs" :key="lang.i18nLang">
         <a
-          class="hover:bg-gray-100 dark:hover:bg-[#373f59]"
+          class="hover:bg-gray-100 dark:hover:bg-[#2a2630]"
           :class="{ 'text-primary': currentLang === lang.i18nLang }"
           @click="handleLangChange(lang.i18nLang)"
           >{{ lang.label }}</a

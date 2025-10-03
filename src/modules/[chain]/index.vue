@@ -117,7 +117,7 @@ const amount = computed({
 
 <template>
   <div>
-    <div v-if="coinInfo && coinInfo.name" class="bg-base-100 rounded shadow">
+    <div v-if="coinInfo && coinInfo.name" class="bg-base-100 border border-[var(--border-color)]">
       <div class="grid grid-cols-2 md:grid-cols-3 p-4">
         <div class="col-span-2 md:col-span-1">
           <div class="text-xl font-semibold text-main">
@@ -126,9 +126,7 @@ const amount = computed({
           </div>
           <div class="text-xs mt-2">
             {{ $t('index.rank') }}:
-            <div
-              class="badge text-xs badge-error bg-[#fcebea] dark:bg-[#41384d] text-red-400"
-            >
+            <div class="badge text-xs bg-error text-white border-0">
               #{{ coinInfo.market_cap_rank }}
             </div>
           </div>
@@ -138,7 +136,7 @@ const amount = computed({
               v-for="(item, index) of comLinks"
               :key="index"
               :href="item.href"
-              class="link link-primary px-2 py-1 rounded-sm no-underline hover:text-primary hover:bg-gray-100 dark:hover:bg-slate-800 flex items-center"
+              class="link link-primary px-2 py-1 no-underline hover:text-primary hover:bg-[var(--bg-hover)] flex items-center mr-2"
             >
               <Icon :icon="item?.icon" />
               <span class="ml-1 text-sm uppercase">{{ item?.name }}</span>
@@ -149,12 +147,10 @@ const amount = computed({
             <div class="dropdown dropdown-hover w-full">
               <label>
                 <div
-                  class="bg-gray-100 dark:bg-[#384059] flex items-center justify-between px-4 py-2 cursor-pointer rounded"
+                  class="bg-base-200 flex items-center justify-between px-4 py-2 cursor-pointer border border-[var(--border-color)]"
                 >
                   <div>
-                    <div
-                      class="font-semibold text-xl text-[#666] dark:text-white"
-                    >
+                    <div class="font-semibold text-base text-main">
                       {{ ticker?.market?.name || '' }}
                     </div>
                     <div class="text-info text-sm">
@@ -165,9 +161,7 @@ const amount = computed({
                   </div>
 
                   <div class="text-right">
-                    <div
-                      class="text-xl font-semibold text-[#666] dark:text-white"
-                    >
+                    <div class="text-lg font-semibold text-main">
                       ${{ ticker?.converted_last?.usd }}
                     </div>
                     <div class="text-sm" :class="store.priceColor">{{ store.priceChange }}%</div>
@@ -176,7 +170,7 @@ const amount = computed({
               </label>
               <div class="dropdown-content pt-1">
                 <div class="h-64 overflow-auto w-full shadow rounded">
-                  <ul class="menu w-full bg-gray-100 rounded dark:bg-[#384059]">
+                  <ul class="menu w-full bg-gray-100 rounded dark:bg-[#1f1f1f]">
                     <li
                       v-for="(item, index) in store.coinInfo.tickers"
                       :key="index"
@@ -192,7 +186,7 @@ const amount = computed({
                           >
                             {{ item?.market?.name }}
                           </div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-sm text-gray-500 dark:text-[#b0b7c2]">
                             {{ shortName(item?.base, item?.coin_id) }}/{{
                               shortName(item?.target, item?.target_coin_id)
                             }}
@@ -298,7 +292,7 @@ const amount = computed({
           <PriceMarketChart />
         </div>
       </div>
-      <div class="h-[1px] w-full bg-gray-100 dark:bg-[#384059]"></div>
+      <div class="h-[1px] w-full bg-[var(--border-color)]"></div>
       <div class="max-h-[250px] overflow-auto p-4 text-sm">
         <MdEditor
           :model-value="coinInfo.description?.en"
@@ -308,7 +302,7 @@ const amount = computed({
       <div class="mx-4 flex flex-wrap items-center">
         <div
           v-for="tag in coinInfo.categories"
-          class="mr-2 mb-4 text-xs bg-gray-100 dark:bg-[#384059] px-3 rounded-full py-1"
+          class="mr-2 mb-4 text-xs bg-base-200 px-3 rounded-full py-1"
         >
           {{ tag }}
         </div>
@@ -323,7 +317,7 @@ const amount = computed({
 
     <div
       v-if="blockchain.supportModule('governance')"
-      class="bg-base-100 rounded mt-4 shadow"
+      class="bg-base-100 border border-[var(--border-color)] mt-4"
     >
       <div class="px-4 pt-4 pb-2 text-lg font-semibold text-main">
         {{ $t('index.active_proposals') }}
@@ -339,7 +333,7 @@ const amount = computed({
       </div>
     </div>
 
-    <div class="bg-base-100 rounded mt-4 shadow">
+    <div class="bg-base-100 border border-[var(--border-color)] mt-4">
       <div class="flex justify-between px-4 pt-4 pb-2 text-lg font-semibold text-main">
         <span class="truncate">{{ walletStore.currentAddress || 'Not Connected' }}</span>
         <RouterLink
@@ -352,28 +346,28 @@ const amount = computed({
       <div
         class="grid grid-cols-1 md:!grid-cols-4 auto-cols-auto gap-4 px-4 pb-6"
       >
-        <div class="bg-gray-100 dark:bg-[#373f59] rounded-sm px-4 py-3">
+        <div class="bg-base-200 px-4 py-3">
           <div class="text-sm mb-1">{{ $t('account.balance') }}</div>
           <div class="text-lg font-semibold text-main">
             {{ format.formatToken(walletStore.balanceOfStakingToken) }}
           </div>
           <div class="text-sm" :class="color">${{ format.tokenValue(walletStore.balanceOfStakingToken) }}</div>
         </div>
-        <div class="bg-gray-100 dark:bg-[#373f59] rounded-sm px-4 py-3">
+        <div class="bg-base-200 px-4 py-3">
           <div class="text-sm mb-1">{{ $t('module.staking') }}</div>
           <div class="text-lg font-semibold text-main">
             {{ format.formatToken(walletStore.stakingAmount) }}
           </div>
           <div class="text-sm" :class="color">${{ format.tokenValue(walletStore.stakingAmount) }}</div>
         </div>
-        <div class="bg-gray-100 dark:bg-[#373f59] rounded-sm px-4 py-3">
+        <div class="bg-base-200 px-4 py-3">
           <div class="text-sm mb-1">{{ $t('index.reward') }}</div>
           <div class="text-lg font-semibold text-main">
             {{ format.formatToken(walletStore.rewardAmount) }}
           </div>
           <div class="text-sm" :class="color">${{ format.tokenValue(walletStore.rewardAmount) }}</div>
         </div>
-        <div class="bg-gray-100 dark:bg-[#373f59] rounded-sm px-4 py-3">
+        <div class="bg-base-200 px-4 py-3">
           <div class="text-sm mb-1">{{ $t('index.unbonding') }}</div>
           <div class="text-lg font-semibold text-main">
             {{ format.formatToken(walletStore.unbondingAmount) }}
@@ -444,16 +438,16 @@ const amount = computed({
 
       <div class="grid grid-cols-3 gap-4 px-4 pb-6 mt-4">
         <label for="PingTokenConvert" class="btn btn-primary text-white">{{ $t('index.btn_swap') }}</label>
-        <label for="send" class="btn !bg-yes !border-yes text-white" @click="dialog.open('send', {}, updateState)">{{
+        <label for="send" class="btn !bg-yes text-white" @click="dialog.open('send', {}, updateState)">{{
           $t('account.btn_send')
         }}</label>
         <label
           for="delegate"
-          class="btn !bg-info !border-info text-white"
+          class="btn !bg-info text-white"
           @click="dialog.open('delegate', {}, updateState)"
           >{{ $t('account.btn_delegate') }}</label
         >
-        <RouterLink to="/wallet/receive" class="btn !bg-info !border-info text-white hidden">{{
+        <RouterLink to="/wallet/receive" class="btn !bg-info text-white hidden">{{
           $t('index.receive')
         }}</RouterLink>
       </div>
@@ -466,7 +460,7 @@ const amount = computed({
       </Teleport>
     </div>
 
-    <div class="bg-base-100 rounded mt-4">
+    <div class="bg-base-100 border border-[var(--border-color)] mt-4">
       <div class="px-4 pt-4 pb-2 text-lg font-semibold text-main">
         {{ $t('index.app_versions') }}
       </div>
@@ -478,7 +472,7 @@ const amount = computed({
       <div class="h-4"></div>
     </div>
 
-    <div v-if="!store.coingeckoId" class="bg-base-100 rounded mt-4">
+    <div v-if="!store.coingeckoId" class="bg-base-100 border border-[var(--border-color)] mt-4">
       <div class="px-4 pt-4 pb-2 text-lg font-semibold text-main">
         {{ $t('index.node_info') }}
       </div>

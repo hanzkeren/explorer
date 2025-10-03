@@ -7,7 +7,7 @@ import newFooter from '@/layouts/components/NavFooter.vue';
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue';
 import NavbarSearch from '@/layouts/components/NavbarSearch.vue';
 import ChainProfile from '@/layouts/components/ChainProfile.vue';
-import Sponsors from '@/layouts/components/Sponsors.vue';
+// Minimal: remove sponsors/ad imports
 
 import { useDashboard } from '@/stores/useDashboard';
 import { NetworkType } from '@/types/chaindata';
@@ -22,7 +22,6 @@ import type {
   VerticalNavItems,
 } from '../types';
 import dayjs from 'dayjs';
-import AdBanner from '@/components/ad/AdBanner.vue';
 
 const dashboard = useDashboard();
 dashboard.initial();
@@ -78,25 +77,28 @@ const behind = computed(() => {
 
 dayjs();
 
-const show_ad = computed(() => {
-  return location.hostname.indexOf('ping.pub') > -1;
-});
+// Minimal: no ads
 </script>
 
 <template>
-  <div class="bg-gray-100 dark:bg-[#171d30]">
+  <div class="bg-[#1a1d23] dark:bg-[#1a1d23] min-h-screen">
     <!-- sidebar -->
     <div
-      class="w-64 fixed z-50 left-0 top-0 bottom-0 overflow-auto bg-base-100 border-r border-gray-100 dark:border-gray-700"
+      class="w-56 fixed z-50 left-0 top-0 bottom-0 overflow-auto bg-base-100 border-r border-[var(--border-color)]"
       :class="{ block: sidebarShow, 'hidden xl:!block': !sidebarShow }"
     >
-      <div class="flex justify-between mt-1 pl-4 py-4 mb-1">
-        <RouterLink to="/" class="flex items-center">
-          <img class="w-10 h-10" src="../../assets/logo.svg" />
-          <h1 class="flex-1 ml-3 text-2xl font-semibold dark:text-white">Ping.pub</h1>
+      <div class="flex justify-between px-5 py-4 border-b border-[var(--border-color)]">
+        <RouterLink to="/" class="flex flex-col">
+          <div class="flex items-center">
+            <img class="w-9 h-9" src="https://cdn.kerenstake.com/logo-ks.png" />
+            <h1 class="ml-3 text-xl font-bold text-main">
+              KERENSTAKE<span style="color: #00ff88">.</span>
+            </h1>
+          </div>
+          <div class="text-xs text-secondary tracking-widest ml-12 mt-0.5">EXPLORER</div>
         </RouterLink>
         <div
-          class="pr-4 cursor-pointer xl:!hidden"
+          class="cursor-pointer xl:!hidden"
           @click="sidebarShow = false"
         >
           <Icon icon="mdi-close" class="text-2xl" />
@@ -114,20 +116,10 @@ const show_ad = computed(() => {
           }"
         >
           <input v-if="index > 0" type="checkbox" class="cursor-pointer !h-10 block" @click="changeOpen(index)" />
-          <div
-            class="collapse-title !py-0 px-4 flex items-center cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]"
-          >
-            <Icon
-              v-if="item?.icon?.icon"
-              :icon="item?.icon?.icon"
-              class="text-xl mr-2"
-              :class="{
-                'text-yellow-500': item?.title === 'Favorite',
-                'text-blue-500': item?.title !== 'Favorite',
-              }"
-            />
+          <div class="collapse-title !py-0 px-4 flex items-center cursor-pointer hover:bg-[var(--bg-hover)]">
+            <Icon v-if="item?.icon?.icon" :icon="item?.icon?.icon" class="text-lg mr-2 text-secondary" />
             <img v-if="item?.icon?.image" :src="item?.icon?.image" class="w-6 h-6 rounded-full mr-3" />
-            <div class="text-base capitalize flex-1 text-gray-700 dark:text-gray-200 whitespace-nowrap">
+            <div class="text-sm capitalize flex-1 text-main font-medium whitespace-nowrap">
               {{ item?.title }}
             </div>
             <div
@@ -139,39 +131,28 @@ const show_ad = computed(() => {
             </div>
           </div>
           <div class="collapse-content">
-            <div v-for="(el, key) of item?.children" class="menu bg-base-100 w-full !p-0">
+            <div v-for="(el, key) of item?.children" class="menu bg-transparent w-full !p-0">
               <RouterLink
                 v-if="isNavLink(el)"
                 @click="sidebarShow = false"
-                class="hover:bg-gray-100 dark:hover:bg-[#373f59] rounded cursor-pointer px-3 py-2 flex items-center"
+                class="hover:bg-[var(--bg-hover)] cursor-pointer px-4 py-2.5 flex items-center text-sm transition-colors"
                 :class="{
-                  '!bg-primary': selected($route, el),
+                  '!bg-[var(--bg-active)]': selected($route, el),
                 }"
                 :to="el.to"
               >
                 <Icon
                   v-if="!el?.icon?.image"
-                  icon="mdi:chevron-right"
-                  class="mr-2 ml-3"
-                  :class="{
-                    'text-white': $route.path === el?.to?.path && item?.title !== 'Favorite',
-                  }"
+                  icon="mdi:circle-small"
+                  class="mr-2 ml-2 text-secondary"
                 />
                 <img
                   v-if="el?.icon?.image"
                   :src="el?.icon?.image"
-                  class="w-6 h-6 rounded-full mr-3 ml-4"
-                  :class="{
-                    'border border-gray-300 bg-white': selected($route, el),
-                  }"
+                  class="w-6 h-6 rounded-full mr-3 ml-3"
                 />
-                <div
-                  class="text-base capitalize text-gray-500 dark:text-gray-300"
-                  :class="{
-                    '!text-white': selected($route, el),
-                  }"
-                >
-                  {{ item?.title === 'Favorite' ? el?.title : $t(el?.title) }}
+                <div class="capitalize text-main font-medium">
+                  {{ $t(el?.title) }}
                 </div>
               </RouterLink>
             </div>
@@ -180,12 +161,11 @@ const show_ad = computed(() => {
               class="menu bg-base-100 w-full !p-0"
             >
               <RouterLink
-                class="hover:bg-gray-100 dark:hover:bg-[#373f59] rounded cursor-pointer px-3 py-2 flex items-center"
+                class="hover:bg-active rounded-md cursor-pointer px-3 py-2 flex items-center"
                 :to="`/${blockchain.chainName}/faucet`"
               >
-                <Icon icon="mdi:chevron-right" class="mr-2 ml-3"></Icon>
-                <div class="text-base capitalize text-gray-500 dark:text-gray-300">Faucet</div>
-                <div class="badge badge-sm text-white border-none badge-error ml-auto">New</div>
+                <Icon icon="mdi:circle-small" class="mr-2 ml-3 text-secondary"></Icon>
+                <div class="text-sm capitalize text-gray-700 dark:text-[#eee]">Faucet</div>
               </RouterLink>
             </div>
           </div>
@@ -195,91 +175,33 @@ const show_ad = computed(() => {
           v-if="isNavLink(item)"
           :to="item?.to"
           @click="sidebarShow = false"
-          class="cursor-pointer rounded-lg px-4 flex items-center py-2 hover:bg-gray-100 dark:hover:bg-[#373f59]"
+          class="cursor-pointer rounded-md px-4 flex items-center py-2 hover:bg-active"
         >
-          <Icon
-            v-if="item?.icon?.icon"
-            :icon="item?.icon?.icon"
-            class="text-xl mr-2"
-            :class="{
-              'text-yellow-500': item?.title === 'Favorite',
-              'text-blue-500': item?.title !== 'Favorite',
-            }"
-          />
+          <Icon v-if="item?.icon?.icon" :icon="item?.icon?.icon" class="text-lg mr-2 text-secondary" />
           <img
             v-if="item?.icon?.image"
             :src="item?.icon?.image"
-            class="w-6 h-6 rounded-full mr-3 border border-blue-100"
+            class="w-6 h-6 rounded-full mr-3 border border-[#1a1a1a]"
           />
-          <div class="text-base capitalize flex-1 text-gray-700 dark:text-gray-200 whitespace-nowrap">
+          <div class="text-sm capitalize flex-1 text-gray-700 dark:text-[#eee] whitespace-nowrap">
             {{ item?.title }}
           </div>
-          <div
-            v-if="item?.badgeContent"
-            class="badge badge-sm text-white border-none"
-            :class="item?.badgeClass"
-          >
-            {{ item?.badgeContent }}
-          </div>
+          <!-- badges removed for minimalism -->
         </RouterLink>
         <div
           v-if="isNavTitle(item)"
-          class="px-4 text-sm text-gray-400 pb-2 uppercase"
+          class="px-4 text-sm text-[#b0b7c2] pb-2 uppercase"
         >
           {{ item?.heading }}
         </div>
       </div>
-      <div class="px-2">
-        <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">Tools</div>
-        <RouterLink
-          to="/wallet/suggest"
-          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <Icon icon="mdi:frequently-asked-questions" class="text-xl mr-2" />
-          <div class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200">Wallet Helper</div>
-        </RouterLink>
-        <div
-          v-if="showDiscord"
-          class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase"
-        >
-          {{ $t('module.sponsors') }}
-        </div>
-        <Sponsors v-if="showDiscord" />
-        <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">{{ $t('module.links') }}</div>
-        <a
-          href="https://twitter.com/ping_pub"
-          target="_blank"
-          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <Icon icon="mdi:twitter" class="text-xl mr-2" />
-          <div class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200">Twitter</div>
-        </a>
-        <a
-          v-if="showDiscord"
-          href="https://discord.com/invite/CmjYVSr6GW"
-          target="_blank"
-          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <Icon icon="mdi:discord" class="text-xl mr-2" />
-          <div class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200">Discord</div>
-        </a>
-        <a
-          href="https://github.com/ping-pub/explorer/discussions"
-          target="_blank"
-          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <Icon icon="mdi:frequently-asked-questions" class="text-xl mr-2" />
-          <div class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200">FAQ</div>
-        </a>
-      </div>
+      <!-- Minimal: remove tools/sponsors/links to declutter sidebar -->
     </div>
-    <div class="xl:!ml-64 px-3 pt-4">
+    <div class="xl:!ml-64 px-5 pt-4">
       <!-- header -->
-      <div
-        class="flex items-center py-3 bg-base-100 mb-4 rounded px-4 sticky top-0 z-10"
-      >
+      <div class="flex items-center py-3 mb-6 sticky top-0 z-10 border-b border-[var(--border-color)] bg-base-100">
         <div
-          class="text-2xl pr-3 cursor-pointer xl:!hidden"
+          class="text-2xl pr-4 cursor-pointer xl:!hidden"
           @click="sidebarShow = true"
         >
           <Icon icon="mdi-menu" />
@@ -289,8 +211,6 @@ const show_ad = computed(() => {
 
         <div class="flex-1 w-0"></div>
 
-        <!-- <NavSearchBar />-->
-        <NavBarI18n class="hidden md:!inline-block" />
         <NavbarThemeSwitcher class="!inline-block" />
         <NavbarSearch class="!inline-block" />
         <NavBarWallet />
@@ -298,7 +218,7 @@ const show_ad = computed(() => {
 
       <!-- 👉 Pages -->
       <div style="min-height: calc(100vh - 180px)">
-        <div v-if="behind" class="alert alert-error mb-4">
+        <div v-if="behind" class="alert bg-error text-white mb-4 border-0">
           <div class="flex gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -323,7 +243,6 @@ const show_ad = computed(() => {
         <RouterView v-slot="{ Component }">
           <Transition mode="out-in">
             <div>
-              <AdBanner v-if="show_ad" />
               <Component :is="Component" />
             </div>
           </Transition>
