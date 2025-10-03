@@ -61,8 +61,8 @@ function search() {
       </table>
       <div class="p-4">
         <div class="alert relative bg-transparent">
-          <div class="alert absolute inset-x-0 inset-y-0 w-full h-full bg-info opacity-10"></div>
-          <div class="text-info flex gap-2">
+          <div class="alert absolute inset-x-0 inset-y-0 w-full h-full bg-primary opacity-10"></div>
+          <div class="text-primary flex gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

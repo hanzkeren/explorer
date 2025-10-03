@@ -153,7 +153,7 @@ const amount = computed({
                     <div class="font-semibold text-base text-main">
                       {{ ticker?.market?.name || '' }}
                     </div>
-                    <div class="text-info text-sm">
+                    <div class="text-primary text-sm">
                       {{ shortName(ticker?.base, ticker?.coin_id) }}/{{
                         shortName(ticker?.target, ticker?.target_coin_id)
                       }}
@@ -443,11 +443,11 @@ const amount = computed({
         }}</label>
         <label
           for="delegate"
-          class="btn !bg-info text-white"
+          class="btn !bg-primary text-white"
           @click="dialog.open('delegate', {}, updateState)"
           >{{ $t('account.btn_delegate') }}</label
         >
-        <RouterLink to="/wallet/receive" class="btn !bg-info text-white hidden">{{
+        <RouterLink to="/wallet/receive" class="btn !bg-primary text-white hidden">{{
           $t('index.receive')
         }}</RouterLink>
       </div>

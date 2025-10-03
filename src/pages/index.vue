@@ -29,9 +29,9 @@ const chainStore = useBlockchain();
 </script>
 <template>
   <div class="">
-    <div class="mb-6 mt-8">
-      <h1 class="text-main text-2xl font-semibold mb-1">
-        KERENSTAKE<span style="color: var(--accent)">.</span>
+    <div class="mb-6 mt-8 text-center">
+      <h1 class="text-main text-2xl mb-1">
+        <span class="font-bold">KERENSTAKE</span><span class="dot-animate">.</span>
       </h1>
       <div class="text-secondary text-xs">EXPLORER</div>
     </div>
@@ -53,6 +53,21 @@ const chainStore = useBlockchain();
 </template>
 
 <style scoped>
-/* Minimal styles */
+.dot-animate {
+  color: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
 </style>
 @/components/ad/ad

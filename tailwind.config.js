@@ -7,7 +7,7 @@ module.exports = {
       colors: {
         yes: '#10b981',
         no: '#ef4444',
-        info: '#3b82f6',
+        info: '#8b5cf6',
         main: 'var(--text-main)',
         secondary: 'var(--text-secondary)',
         active: 'var(--bg-active)',

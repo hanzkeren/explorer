@@ -84,7 +84,7 @@ function metaItem(metadata: string | undefined): { title: string; summary: strin
                     ? 'text-yes'
                     : statusMap?.[item?.status] === 'REJECTED'
                     ? 'text-no'
-                    : 'text-info'
+                    : 'text-primary'
                 "
               >
                 <div
@@ -94,7 +94,7 @@ function metaItem(metadata: string | undefined): { title: string; summary: strin
                       ? 'bg-yes'
                       : statusMap?.[item?.status] === 'REJECTED'
                       ? 'bg-no'
-                      : 'bg-info'
+                      : 'bg-primary'
                   "
                 ></div>
                 <div class="text-xs">
@@ -175,7 +175,7 @@ function metaItem(metadata: string | undefined): { title: string; summary: strin
                   ? 'text-yes'
                   : statusMap?.[item?.status] === 'REJECTED'
                   ? 'text-no'
-                  : 'text-info'
+                  : 'text-primary'
               "
             >
               <div
@@ -185,7 +185,7 @@ function metaItem(metadata: string | undefined): { title: string; summary: strin
                     ? 'bg-yes'
                     : statusMap?.[item?.status] === 'REJECTED'
                     ? 'bg-no'
-                    : 'bg-info'
+                    : 'bg-primary'
                 "
               ></div>
               <div class="text-xs flex items-center">

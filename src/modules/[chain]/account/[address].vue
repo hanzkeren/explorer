@@ -174,8 +174,8 @@ function mapAmount(events: { type: string; attributes: { key: string; value: str
             <!--balances  -->
             <div class="flex items-center px-4 mb-2" v-for="(balanceItem, index) in balances" :key="index">
               <div class="w-9 h-9 rounded overflow-hidden flex items-center justify-center relative mr-4">
-                <Icon icon="mdi-account-cash" class="text-info" size="20" />
-                <div class="absolute top-0 bottom-0 left-0 right-0 bg-info opacity-20"></div>
+                <Icon icon="mdi-account-cash" class="text-primary" size="20" />
+                <div class="absolute top-0 bottom-0 left-0 right-0 bg-primary opacity-20"></div>
               </div>
               <div class="flex-1">
                 <div class="text-sm font-semibold">

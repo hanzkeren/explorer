@@ -176,7 +176,7 @@ const abstain = computed(() => {
 });
 const processList = computed(() => {
   return [
-    { name: 'Turnout', value: turnout.value, class: 'bg-info' },
+    { name: 'Turnout', value: turnout.value, class: 'bg-primary' },
     { name: 'Yes', value: yes.value, class: 'bg-success' },
     { name: 'No', value: no.value, class: 'bg-error' },
     { name: 'No With Veto', value: veto.value, class: 'bg-red-800' },
@@ -224,7 +224,7 @@ function metaItem(metadata: string | undefined): { title: string; summary: strin
         </p>
         <div
           class="badge badge-ghost"
-          :class="color === 'success' ? 'text-yes' : color === 'error' ? 'text-no' : 'text-info'"
+          :class="color === 'success' ? 'text-yes' : color === 'error' ? 'text-no' : 'text-primary'"
         >
           {{ status }}
         </div>

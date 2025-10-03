@@ -215,8 +215,8 @@ async function update() {
             <span class="text-md">{{ $t('consensus.step') }}</span>
           </div>
           <div class="avatar placeholder">
-            <div class="bg-blue-100 text-neutral-content rounded-full w-12 h-12">
-              <span class="text-2xl text-info font-semibold">{{ $t('consensus.s') }}</span>
+            <div class="bg-purple-100 dark:bg-purple-900/20 text-neutral-content rounded-full w-12 h-12">
+              <span class="text-2xl text-primary font-semibold">{{ $t('consensus.s') }}</span>
             </div>
           </div>
         </div>
