@@ -87,16 +87,16 @@ dayjs();
       class="w-56 fixed z-50 left-0 top-0 bottom-0 overflow-auto bg-base-100 border-r border-[var(--border-color)]"
       :class="{ block: sidebarShow, 'hidden xl:!block': !sidebarShow }"
     >
-      <div class="flex justify-between px-4 py-4 border-b border-[var(--border-color)]">
-        <RouterLink to="/" class="flex items-center group">
-          <img class="w-8 h-8 transition-transform group-hover:scale-105" src="https://cdn.kerenstake.com/logo-ks.png" />
-          <div class="ml-3">
+      <div class="flex justify-between px-3 py-3 border-b border-[var(--border-color)]">
+        <RouterLink to="/" class="flex items-center">
+          <img class="w-7 h-7" src="https://cdn.kerenstake.com/logo-ks.png" />
+          <div class="ml-2">
             <div class="text-sm font-semibold text-main">KERENSTAKE</div>
             <div class="text-xs text-secondary">EXPLORER</div>
           </div>
         </RouterLink>
         <div
-          class="cursor-pointer xl:!hidden hover:bg-[var(--bg-hover)] rounded p-1 transition-all"
+          class="cursor-pointer xl:!hidden"
           @click="sidebarShow = false"
         >
           <Icon icon="mdi-close" class="text-xl" />
@@ -114,8 +114,8 @@ dayjs();
           }"
         >
           <input v-if="index > 0" type="checkbox" class="cursor-pointer !h-10 block" @click="changeOpen(index)" />
-          <div class="collapse-title !py-0 px-4 flex items-center cursor-pointer hover:bg-[var(--bg-hover)] transition-all">
-            <Icon v-if="item?.icon?.icon" :icon="item?.icon?.icon" class="text-lg mr-3 text-secondary" />
+          <div class="collapse-title !py-0 px-4 flex items-center cursor-pointer hover:bg-[var(--bg-hover)]">
+            <Icon v-if="item?.icon?.icon" :icon="item?.icon?.icon" class="text-lg mr-2 text-secondary" />
             <img v-if="item?.icon?.image" :src="item?.icon?.image" class="w-6 h-6 rounded-full mr-3" />
             <div class="text-sm capitalize flex-1 text-main font-medium whitespace-nowrap">
               {{ item?.title }}
@@ -133,7 +133,7 @@ dayjs();
               <RouterLink
                 v-if="isNavLink(el)"
                 @click="sidebarShow = false"
-                class="hover:bg-[var(--bg-hover)] cursor-pointer px-4 py-2 flex items-center text-sm transition-all rounded-md mx-1"
+                class="hover:bg-[var(--bg-hover)] cursor-pointer px-3 py-2 flex items-center text-sm"
                 :class="{
                   '!bg-[var(--bg-active)]': selected($route, el),
                 }"
@@ -142,12 +142,12 @@ dayjs();
                 <Icon
                   v-if="!el?.icon?.image"
                   icon="mdi:circle-small"
-                  class="mr-2 ml-1 text-secondary text-sm"
+                  class="mr-1 ml-2 text-secondary text-sm"
                 />
                 <img
                   v-if="el?.icon?.image"
                   :src="el?.icon?.image"
-                  class="w-5 h-5 rounded mr-3 ml-2"
+                  class="w-5 h-5 rounded mr-2 ml-3"
                 />
                 <div class="capitalize text-main">
                   {{ $t(el?.title) }}
@@ -195,9 +195,9 @@ dayjs();
       </div>
       <!-- Minimal: remove tools/sponsors/links to declutter sidebar -->
     </div>
-    <div class="xl:!ml-64 px-4 pt-4">
+    <div class="xl:!ml-64 px-3 pt-3">
       <!-- header -->
-      <div class="flex items-center py-3 mb-6 sticky top-0 z-10 border-b border-[var(--border-color)] bg-base-100 backdrop-blur-sm bg-opacity-95">
+      <div class="flex items-center py-2 mb-4 sticky top-0 z-10 border-b border-[var(--border-color)] bg-base-100">
         <div
           class="text-xl pr-3 cursor-pointer xl:!hidden"
           @click="sidebarShow = true"

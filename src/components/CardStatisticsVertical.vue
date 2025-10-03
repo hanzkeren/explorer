@@ -22,14 +22,14 @@ const isPositive = controlledComputed(
 </script>
 
 <template>
-  <div class="border border-[var(--border-color)] bg-base-100 p-4 transition-all duration-200 hover:border-primary hover:shadow-sm" style="border-radius: 6px">
-    <div class="text-xs text-secondary mb-2 font-medium uppercase tracking-wide">
+  <div class="border border-[var(--border-color)] bg-base-100 p-3" style="border-radius: var(--radius)">
+    <div class="text-xs text-secondary mb-1">
       {{ props.title }}
     </div>
-    <div class="text-2xl font-semibold text-main mb-1">
+    <div class="text-xl font-semibold text-main">
       {{ props.stats || '-' }}
     </div>
-    <div v-if="props.change" :class="isPositive ? 'text-yes' : 'text-no'" class="text-xs font-medium">
+    <div v-if="props.change" :class="isPositive ? 'text-yes' : 'text-no'" class="text-xs mt-1">
       {{ isPositive ? `+${props.change}` : props.change }}%
     </div>
   </div>

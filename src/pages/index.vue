@@ -28,25 +28,25 @@ const chains = computed(() => {
 const chainStore = useBlockchain();
 </script>
 <template>
-  <div class="max-w-[1600px] mx-auto">
-    <div class="mb-8 mt-8">
-      <h1 class="text-main text-3xl font-semibold mb-1 tracking-tight">
-        KERENSTAKE<span style="color: #3b82f6">.</span>
+  <div class="">
+    <div class="mb-6 mt-8">
+      <h1 class="text-main text-2xl font-semibold mb-1">
+        KERENSTAKE<span style="color: var(--accent)">.</span>
       </h1>
-      <div class="text-secondary text-sm">EXPLORER</div>
+      <div class="text-secondary text-xs">EXPLORER</div>
     </div>
 
-    <div class="flex items-center bg-base-100 border border-[var(--border-color)] mb-6 transition-all duration-200 focus-within:border-primary focus-within:shadow-sm" style="border-radius: 6px; height: 44px">
-      <Icon icon="mdi:magnify" class="text-xl text-secondary ml-4" />
+    <div class="flex items-center bg-base-100 border border-[var(--border-color)] mb-4" style="border-radius: var(--radius); height: 40px">
+      <Icon icon="mdi:magnify" class="text-lg text-secondary ml-3" />
       <input
         :placeholder="$t('pages.search_placeholder')"
-        class="px-4 bg-transparent flex-1 outline-none text-sm text-main placeholder:text-secondary"
+        class="px-3 bg-transparent flex-1 outline-none text-sm"
         v-model="keywords"
       />
-      <div class="px-4 text-xs text-secondary hidden md:!block font-medium">{{ chains.length }}/{{ dashboard.length }}</div>
+      <div class="px-3 text-xs text-secondary hidden md:!block">{{ chains.length }}/{{ dashboard.length }}</div>
     </div>
 
-    <div class="grid grid-cols-1 gap-3 md:!grid-cols-3 lg:!grid-cols-4 2xl:!grid-cols-5">
+    <div class="grid grid-cols-1 gap-2 md:!grid-cols-3 lg:!grid-cols-4 2xl:!grid-cols-5">
       <ChainSummary v-for="(chain, index) in chains" :key="index" :name="chain.chainName" />
     </div>
   </div>

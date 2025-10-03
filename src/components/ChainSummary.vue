@@ -15,13 +15,13 @@ const conf = computed(() => dashboardStore.chains[props.name] || {});
 <template>
   <RouterLink
     :to="`/${name}`"
-    class="group bg-base-100 border border-[var(--border-color)] flex items-center px-4 py-3 transition-all duration-200 hover:border-primary hover:shadow-sm"
-    style="border-radius: 6px"
+    class="bg-base-100 border border-[var(--border-color)] flex items-center px-3 py-2 hover:bg-[var(--bg-hover)]"
+    style="border-radius: var(--radius)"
   >
-    <div class="w-9 h-9 rounded overflow-hidden flex-shrink-0 ring-1 ring-[var(--border-color)] group-hover:ring-primary transition-all">
+    <div class="w-8 h-8 rounded overflow-hidden flex-shrink-0">
       <img :src="conf.logo" class="w-full h-full object-cover" />
     </div>
-    <div class="ml-3 text-sm flex-1 truncate text-main font-medium">
+    <div class="ml-3 text-sm flex-1 truncate text-main">
       {{ conf?.prettyName || props.name }}
     </div>
   </RouterLink>

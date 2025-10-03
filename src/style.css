@@ -15,27 +15,26 @@ body {
   font-size: 14px;
 }
 
-/* CSS Variables - Functional & Simple */
+/* CSS Variables - Minimalist Modern */
 :root {
-  --text-main: #1a1a1a;
-  --text-secondary: #6b7280;
-  --bg-active: #f5f5f5;
+  --text-main: #18181b;
+  --text-secondary: #71717a;
+  --bg-active: #f4f4f5;
   --bg-hover: #fafafa;
-  --border-color: #e5e7eb;
-  --accent-primary: #3b82f6;
-  --radius: 6px;
+  --border-color: #e4e4e7;
+  --accent: #8b5cf6;
+  --radius: 8px;
   --spacing: 1rem;
-  --transition: all 0.2s ease;
 }
 
 html.dark,
 html[data-theme='dark'] {
-  --text-main: #e0e0e0;
-  --text-secondary: #a0a0a0;
-  --bg-active: #2a2a2a;
-  --bg-hover: #242424;
-  --border-color: #3a3a3a;
-  --accent-primary: #3b82f6;
+  --text-main: #fafafa;
+  --text-secondary: #a1a1aa;
+  --bg-active: #27272a;
+  --bg-hover: #1f1f23;
+  --border-color: #3f3f46;
+  --accent: #a78bfa;
 }
 
 /* Typography - Functional */
@@ -55,21 +54,17 @@ p {
 
 /* Buttons - Functional */
 .btn {
-  @apply normal-case font-medium text-sm px-4 py-2;
+  @apply normal-case font-normal text-sm px-3 py-1.5;
   border-radius: var(--radius);
-  transition: var(--transition);
 }
 
 .btn-primary {
-  @apply bg-primary text-white border-0;
-}
-
-.btn-primary:hover {
-  @apply opacity-90;
+  @apply text-white border-0;
+  background: var(--accent);
 }
 
 .btn-sm {
-  @apply text-sm px-3 py-1.5;
+  @apply text-sm px-3 py-1;
 }
 
 .btn-xs {
@@ -80,11 +75,6 @@ p {
 .card {
   @apply border border-[var(--border-color)] bg-base-100;
   border-radius: var(--radius);
-  transition: var(--transition);
-}
-
-.card:hover {
-  @apply shadow-sm;
 }
 
 /* Badges - Functional */
@@ -102,9 +92,11 @@ p {
 /* Inputs - Functional */
 .input, .select, .textarea {
   @apply border border-[var(--border-color)];
-  @apply focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/20;
+  @apply focus:outline-none;
   border-radius: var(--radius);
-  transition: var(--transition);
+}
+.input:focus, .select:focus, .textarea:focus {
+  border-color: var(--accent);
 }
 
 /* Menus - Functional */
@@ -113,7 +105,6 @@ p {
 }
 .menu :where(li) > :where(*:not(ul,.menu-title,details,.btn)):not(.active):hover {
   @apply bg-[var(--bg-hover)];
-  transition: var(--transition);
 }
 .menu .active {
   @apply bg-[var(--bg-active)] text-main;
@@ -181,8 +172,8 @@ p {
 
 /* Link Styles - Minimal */
 .link {
-  @apply text-primary no-underline hover:underline;
-  transition: var(--transition);
+  @apply no-underline hover:underline;
+  color: var(--accent);
 }
 
 /* Progress Bar - Minimal */
