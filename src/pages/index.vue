@@ -28,56 +28,31 @@ const chains = computed(() => {
 const chainStore = useBlockchain();
 </script>
 <template>
-  <div class="">
-    <div class="flex flex-col items-center justify-center mb-10 mt-16">
-      <h1 class="text-main text-4xl md:!text-6xl font-bold tracking-tight">
-        KERENSTAKE<span class="dot-run">.</span>
+  <div class="max-w-[1600px] mx-auto">
+    <div class="mb-8 mt-8">
+      <h1 class="text-main text-3xl font-semibold mb-1 tracking-tight">
+        KERENSTAKE<span style="color: #3b82f6">.</span>
       </h1>
-      <div class="text-secondary text-sm md:text-base font-medium tracking-[0.3em] mt-3 ml-3">
-        EXPLORER
-      </div>
-    </div>
-    <div v-if="dashboard.status !== LoadingStatus.Loaded" class="flex justify-center mt-6">
-      <progress class="progress progress-info w-80 h-1"></progress>
+      <div class="text-secondary text-sm">EXPLORER</div>
     </div>
 
-    <div class="flex items-center bg-base-100 border border-[var(--border-color)] hover:border-primary transition-colors" style="border-radius: var(--radius); height: 56px">
-      <Icon icon="mdi:magnify" class="text-2xl text-secondary ml-4" />
+    <div class="flex items-center bg-base-100 border border-[var(--border-color)] mb-6 transition-all duration-200 focus-within:border-primary focus-within:shadow-sm" style="border-radius: 6px; height: 44px">
+      <Icon icon="mdi:magnify" class="text-xl text-secondary ml-4" />
       <input
         :placeholder="$t('pages.search_placeholder')"
-        class="px-4 bg-transparent flex-1 outline-none text-base"
+        class="px-4 bg-transparent flex-1 outline-none text-sm text-main placeholder:text-secondary"
         v-model="keywords"
       />
-      <div class="px-5 text-sm text-secondary hidden md:!block font-medium">{{ chains.length }}/{{ dashboard.length }}</div>
+      <div class="px-4 text-xs text-secondary hidden md:!block font-medium">{{ chains.length }}/{{ dashboard.length }}</div>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 mt-8 md:!grid-cols-3 lg:!grid-cols-4 2xl:!grid-cols-5">
+    <div class="grid grid-cols-1 gap-3 md:!grid-cols-3 lg:!grid-cols-4 2xl:!grid-cols-5">
       <ChainSummary v-for="(chain, index) in chains" :key="index" :name="chain.chainName" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.logo path {
-  fill: #171d30;
-}
-
-/* Dot running animation - horizontal */
-.dot-run {
-  display: inline-block;
-  color: #00ff88;
-  animation: dotRun 1.2s ease-in-out infinite;
-}
-
-@keyframes dotRun {
-  0%, 100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  50% {
-    opacity: 0.4;
-    transform: translateX(10px);
-  }
-}
+/* Minimal styles */
 </style>
 @/components/ad/ad

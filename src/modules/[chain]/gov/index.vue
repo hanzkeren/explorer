@@ -31,24 +31,24 @@ function page(p: number) {
 </script>
 <template>
   <div>
-    <div class="flex gap-1 mb-6 border-b border-[var(--border-color)]">
+    <div class="flex gap-1 mb-4 border-b border-[var(--border-color)]">
       <button
-        class="px-6 py-3 text-base border-b-2 transition-all font-medium"
-        :class="tab === '2' ? 'border-primary text-primary' : 'border-transparent text-secondary hover:text-main hover:border-gray-300'"
+        class="px-4 py-2 text-sm border-b-2"
+        :class="tab === '2' ? 'border-primary text-primary' : 'border-transparent text-secondary'"
         @click="changeTab('2')"
       >
         {{ $t('gov.voting') }}
       </button>
       <button
-        class="px-6 py-3 text-base border-b-2 transition-all font-medium"
-        :class="tab === '3' ? 'border-primary text-primary' : 'border-transparent text-secondary hover:text-main hover:border-gray-300'"
+        class="px-4 py-2 text-sm border-b-2"
+        :class="tab === '3' ? 'border-primary text-primary' : 'border-transparent text-secondary'"
         @click="changeTab('3')"
       >
         {{ $t('gov.passed') }}
       </button>
       <button
-        class="px-6 py-3 text-base border-b-2 transition-all font-medium"
-        :class="tab === '4' ? 'border-primary text-primary' : 'border-transparent text-secondary hover:text-main hover:border-gray-300'"
+        class="px-4 py-2 text-sm border-b-2"
+        :class="tab === '4' ? 'border-primary text-primary' : 'border-transparent text-secondary'"
         @click="changeTab('4')"
       >
         {{ $t('gov.rejected') }}

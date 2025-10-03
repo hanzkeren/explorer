@@ -103,27 +103,15 @@ const chartConfig = computed(() => {
 </script>
 
 <template>
-  <div class="bg-base-100 border border-[var(--border-color)] p-4">
-    <div class="text-sm text-main font-medium mb-1">Commission Rate</div>
-    <div class="text-xs text-secondary mb-3">
-      {{ `Updated ${format.toDay(props.commission?.update_time, 'short')}` }}
-    </div>
-    <div class="w-64 m-auto">
+  <div class="bg-base-100 border border-[var(--border-color)] p-3">
+    <div class="text-sm text-main font-medium mb-2">Commission Rate</div>
+    <div class="w-48 m-auto">
       <ApexCharts type="donut" :options="chartConfig" :series="series" />
     </div>
-    <div class="flex items-center justify-center flex-wrap gap-x-4 mt-2">
-      <div class="flex items-center gap-x-1.5">
-        <div class="bg-yes w-1.5 h-1.5 rounded-full"></div>
-        <span class="text-xs text-secondary">Rate: {{ rate.toFixed(0) }}%</span>
-      </div>
-      <div class="flex items-center gap-x-1.5">
-        <div class="bg-yes w-1.5 h-1.5 rounded-full opacity-50"></div>
-        <span class="text-xs text-secondary">24h: ±{{ change }}%</span>
-      </div>
-      <div class="flex items-center gap-x-1.5">
-        <div class="bg-secondary w-1.5 h-1.5 rounded-full"></div>
-        <span class="text-xs text-secondary">Max: {{ max }}%</span>
-      </div>
+    <div class="flex items-center justify-center gap-x-3 mt-2 text-xs">
+      <span>Rate: {{ rate.toFixed(0) }}%</span>
+      <span>24h: ±{{ change }}%</span>
+      <span>Max: {{ max }}%</span>
     </div>
   </div>
 </template>
